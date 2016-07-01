@@ -79,10 +79,11 @@ class BooksReader(object):
     def upload_books(self):
         uploader = get_uploader()
         for k, v in self.books_map.iteritems():
+            metadata = {'author': v.get('author') or '---', 'title': v.get('title') or '---'}
             for e in ['.epub', '.mobi', '.pdf', 'cover']:
                 elem = v.get(e)
                 if elem:
-                    uploader.upload(elem)
+                    uploader.upload(elem, metadata)
 
     def __init__(self, path):
         self.page = None
