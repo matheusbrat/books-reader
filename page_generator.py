@@ -33,7 +33,7 @@ class BooksLibraryPageGenerator(object):
             if v.get('cover'):
                 link_cover = 'https://s3-us-west-2.amazonaws.com/%s/%s' % (AWS_STORAGE_BUCKET_NAME,
                                                                            basename(v.get('cover')))
-''
+                
             page += '![%s](%s "%s") | Name: %s <br /> Author: %s <br />[PDF](%s)<br />[MOBI](%s)<br />[EPUB](%s)' % \
                     (title, link_cover, title, title, author, link_pdf, link_mobi, link_epub)
             page += '\n'
