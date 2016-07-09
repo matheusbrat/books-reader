@@ -7,7 +7,7 @@ from settings import *
 from uploader import get_uploader
 import json
 from page_generator import BooksLibraryPageGenerator
-
+from datetime import date
 
 class BooksLibrary(object):
     map_filename = 'books-map.json'
@@ -55,6 +55,7 @@ class BooksLibrary(object):
                 books_map[filename]['cover'] = filename + '.jpg'
                 books_map[filename]['title'] = epub.title
                 books_map[filename]['author'] = epub.author
+                books_map[filename]['created_at'] = str(date.today())
 
         return books_map
 

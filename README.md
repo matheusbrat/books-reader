@@ -6,8 +6,9 @@ This library will try to find any epub, mobi, pdf files and then:
 
 
 Dependencies:
-* libmagic
+* python-libmagic libxml2-dev libxslt1-dev python-dev
 * requirements.txt
+
 
 
 ENV:
