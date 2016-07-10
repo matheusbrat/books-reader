@@ -37,7 +37,7 @@ class BooksLibraryPageGenerator(object):
             created_at = v.get('created_at', str('1970-01-01'))
 
             page += '![%s](%s "%s") | Name: %s <br /> Author: %s <br />Created at: %s<br />[PDF](%s)<br />[MOBI](%s)<br />[EPUB](%s)' % \
-                    (title, link_cover, created_at, title, title, author, link_pdf, link_mobi, link_epub)
+                    (title, link_cover, title, title, created_at, author, link_pdf, link_mobi, link_epub)
             page += '\n'
 
         return page
