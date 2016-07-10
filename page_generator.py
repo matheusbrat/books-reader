@@ -6,12 +6,20 @@ class BooksLibraryPageGenerator(object):
 
     @classmethod
     def build_page(cls, books_map):
-        page = "Cover | Info\n"
-        page += "---------|---------\n"
+        page = ""
+        header = "Staring with letter:<br />"
+        start_char = None
+
         for k in sorted(books_map.keys()):
             v = books_map.get(k)
 
             title = v.get('title')
+            if start_char != title[0].lower():
+                start_char = title[0].lower()
+                header = header + "[%s](#%s)<br />\n" % (start_char, start_char)
+                page += "\n\n# %s \nCover | Info\n" % (start_char)
+                page += "---------|---------\n"
+
             author = v.get('author')
             link_pdf = ""
             link_epub = ""
@@ -40,4 +48,4 @@ class BooksLibraryPageGenerator(object):
                     (title, link_cover, title, title, author, created_at, link_pdf, link_mobi, link_epub)
             page += '\n'
 
-        return page
+        return header + '\n\n' + page
