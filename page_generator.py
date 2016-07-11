@@ -16,8 +16,8 @@ class BooksLibraryPageGenerator(object):
             title = v.get('title')
             if start_char != title[0].lower():
                 start_char = title[0].lower()
-                header = header + "[%s](#%s)<br />\n" % (start_char, start_char)
-                page += "\n\n# %s \nCover | Info\n" % (start_char)
+                header = header + "[%s](#%s)<br />\n" % (start_char.upper(), start_char)
+                page += "\n\n# %s \nCover | Info\n" % (start_char.upper())
                 page += "---------|---------\n"
 
             author = v.get('author')
