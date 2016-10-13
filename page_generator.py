@@ -25,6 +25,10 @@ class BooksLibraryPageGenerator(object):
             link_epub = ""
             link_mobi = ""
             link_cover = ""
+            if author:
+                author = author.encode('ascii', errors='ignore')
+            if title:
+                title = title.encode('ascii', errors='ignore')
 
             if v.get('.pdf'):
                 link_pdf = 'https://s3-us-west-2.amazonaws.com/%s/%s' % (AWS_STORAGE_BUCKET_NAME,

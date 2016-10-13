@@ -56,6 +56,11 @@ class BooksLibrary(object):
                 books_map[filename]['title'] = epub.title
                 books_map[filename]['author'] = epub.author
                 books_map[filename]['created_at'] = str(date.today())
+                if books_map[filename]['title']:
+                    books_map[filename]['title'] = books_map[filename]['title'].encode('ascii', errors='ignore')
+                if books_map[filename]['author']:
+                    books_map[filename]['author'] = books_map[filename]['author'].encode('ascii', errors='ignore')
+
 
         return books_map
 
