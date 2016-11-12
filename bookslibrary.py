@@ -47,19 +47,25 @@ class BooksLibrary(object):
             books_map[filename][ext] = book
 
             if ext == '.epub':
-                epub = Epub.from_file(book)
-                image_data = StringIO.StringIO(epub.cover.get_file())
-                img = Image.open(image_data)
-                img.thumbnail((293, 445), Image.ANTIALIAS)
-                img.save(filename + '.jpg', "JPEG")
-                books_map[filename]['cover'] = filename + '.jpg'
-                books_map[filename]['title'] = epub.title
-                books_map[filename]['author'] = epub.author
-                books_map[filename]['created_at'] = str(date.today())
+                try:
+                    epub = Epub.from_file(book)
+                    image_data = StringIO.StringIO(epub.cover.get_file())
+                    img = Image.open(image_data)
+                    img.thumbnail((293, 445), Image.ANTIALIAS)
+                    img.save(filename + '.jpg', "JPEG")
+                    books_map[filename]['cover'] = filename + '.jpg'
+                    books_map[filename]['title'] = epub.title
+                    books_map[filename]['author'] = epub.author
+                except Exception as e:
+                    books_map[filename]['cover'] = ''
+                    books_map[filename]['title'] = filename
+                    books_map[filename]['author'] = ''
+
                 if books_map[filename]['title']:
                     books_map[filename]['title'] = books_map[filename]['title'].encode('ascii', errors='ignore')
                 if books_map[filename]['author']:
                     books_map[filename]['author'] = books_map[filename]['author'].encode('ascii', errors='ignore')
+                books_map[filename]['created_at'] = str(date.today())
 
 
         return books_map
